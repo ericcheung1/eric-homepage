@@ -1,0 +1,5 @@
+number: 1
+name: askeric-nlp
+description: Web app using natural language processing (NLP) models to analyze Reddit posts and individual sentences.
+github: https://github.com/ericcheung1/askeric-nlp
+features: [Python, FastAPI, NLP, HTMX, Tailwind CSS]

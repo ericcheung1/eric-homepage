@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eric Cheung: Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body
+  class="bg-[#F7F7F2] text-black font-sans text-base"
+  style="font-family: Arial, Verdana, sans-serif;"
+>
+  <div class="max-w-6xl mx-auto p-4 md:p-6">
+
+    <!-- Header -->
+    <header class="border-b-2 border-[#888888] pb-4 mb-6">
+
+      <h1 class="text-4xl font-extrabold tracking-tight">
+        Eric Cheung
+      </h1>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6">
+
+      <!-- Sidebar -->
+      <aside class="border-b border-gray-300 pb-4 md:border-b-0
+                    md:border-r md:pr-4 md:pb-0">
+
+        <h2 class="text-lg font-extrabold mb-3">
+          Directory
+        </h2>
+
+        <nav class="flex flex-col items-start gap-3">
+          <a href="#about" class="text-[#0000EE] underline">
+            About me
+          </a>
+          <a href="#experience" class="text-[#0000EE] underline">
+            Experience
+          </a>
+          <a href="#projects" class="text-[#0000EE] underline">
+            Projects
+          </a>
+          <a href="#interests" class="text-[#0000EE] underline">
+            Interests
+          </a>
+          <a href="#contact" class="text-[#0000EE] underline">
+            Contact Info
+          </a>
+        </nav>
+
+      </aside>
+
+      <!-- Main content -->
+      <main class="min-w-0 space-y-8">
+
+        <!-- About -->
+        <section id="about" class="scroll-mt-4">
+          <h2 class="text-2xl font-extrabold border-b border-[#999999]
+                     pb-2 mb-3">
+            About Me
+          </h2>
+
+          <p class="leading-7">
+            Hey, I'm Eric! I work with machine learning models and really like to code. I enjoy working on
+            projects that help me learn more about computer science. I'd be happy to connect, check 
+            out my contact info below!
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="scroll-mt-4">
+          <h2 class="text-2xl font-extrabold border-b border-[#999999]
+                     pb-2 mb-4">
+            Experience
+          </h2>
+
+          <ul class="list-disc pl-5 space-y-5">
+            {% for experience in experience_list %}
+              <li>
+                <strong class="font-extrabold">
+                  {{ experience.title }} — {{ experience.company }} — {{ experience.date }}
+                </strong>
+
+                {% if experience.description is not none %}
+                <p class="mt-2 leading-6">
+                  {{ experience.description }}
+                </p>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="scroll-mt-4">
+          <h2 class="text-2xl font-extrabold border-b border-[#999999]
+                     pb-2 mb-4">
+            Projects
+          </h2>
+
+          <div class="space-y-4">
+            
+            {% for project in project_list %}
+                <article class="border border-[#999999] p-4">
+                <h3 class="text-lg font-extrabold">
+                    <a
+                    href="{{ project.github }}"
+                    class="text-[#0000EE] underline"
+                    >
+                    {{ project.name }}
+                    </a>
+                </h3>
+
+                <p class="mt-2 leading-6">
+                    {{ project.description }}
+                </p>
+
+                <p class="mt-3 text-xs text-gray-600 leading-5">
+                    {% for feature in project.features %}
+                        {{ feature }} {% if not loop.last %}/ {% endif %}
+                    {% endfor %}
+                </p>
+                </article>
+            {% endfor %}
+
+          </div>
+        </section>
+
+        <!-- Interests -->
+        <section id="interests" class="scroll-mt-4">
+          <h2 class="text-2xl font-extrabold border-b border-[#999999]
+                     pb-2 mb-3">
+            Other Interests
+          </h2>
+
+          <p class="leading-7">
+            Watching the Canucks, playing basketball, going ice skating,
+            playing Nintendo, and watching YouTube.
+          </p>
+        </section>
+
+        <!-- Links -->
+        <section id="contact" class="scroll-mt-4">
+          <h2 class="text-2xl font-extrabold border-b border-[#999999]
+                     pb-2 mb-3">
+            Contact Info
+          </h2>
+
+          <ul class="list-disc pl-5 space-y-3">
+            <li>
+              <a
+                href="https://github.com/ericcheung1"
+                class="text-[#0000EE] underline"
+              >
+                GitHub
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.linkedin.com/in/eric-cheung01/"
+                class="text-[#0000EE] underline"
+              >
+                LinkedIn
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="mailto:ericcheun251@gmail.com"
+                class="text-[#0000EE] underline"
+              >
+                Email me
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-[#888888] mt-10 pt-4
+                   text-sm text-gray-600 text-center">
+      <p>© 2026 Eric Cheung</p>
+    </footer>
+
+  </div>
+</body>
+</html>

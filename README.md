@@ -1,0 +1,3 @@
+## Personal Page
+
+This is a simple .html page that is styled using Tailwind CSS (but not in the 100% safe way 😧). However, I was inspired by [`Brett Codes`](https://brettcodes.com/) and his [`project`](https://codeberg.org/brettchalupa/brettcodesshow) where he uses Ruby's templating engine to dynamically build a static site and a RSS feed for his podcasts episodes. So I build a simple Python script with Jinja2 to do the same thing. This way I can write out simple .yaml files whenever I want to add stuff to my experience and projects sections.

@@ -1,0 +1,5 @@
+number: 0
+name: eric-ai
+description: Experimental small language models with a custom tokenizer, training, and inference loop.
+github: https://github.com/ericcheung1/eric-ai
+features: [Python, PyTorch, Language Models]
