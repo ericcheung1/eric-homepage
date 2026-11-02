@@ -1,0 +1,5 @@
+number: 1
+name: eric-homepage
+description: This static page right here, generated from a Python script with the Jinja2 templating engine reading from YAML files.
+github: https://github.com/ericcheung1/eric-homepage
+features: [Python, YAML, Jinja2]
