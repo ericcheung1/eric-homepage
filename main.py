@@ -1,12 +1,15 @@
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
+import markdown
 import yaml
 
 PROJECTS_DIR = Path("projects")
 EXPERIENCE_DIR = Path("experience")
 TEMPLATE_DIR = Path("templates")
+OUTPUT_DIR = Path("output")
 OUTPUT_PATH = Path("index.html")
+BLOG_DIR = Path("blog")
 
 
 def parse_experience():
@@ -47,18 +50,76 @@ def parse_projects():
     return project_list
 
 
-def render_index(experience_list, project_list):
+def parse_blog_posts():
+    """Parses .md files in blog directory and renders blog .html"""
+
+    md_parser = markdown.Markdown(extensions=["meta", "fenced_code"])
+    blog_list = []
+    file_loader = FileSystemLoader(TEMPLATE_DIR)
+    env = Environment(loader=file_loader)
+    template = env.get_template("blog_post_template.html")
+
+    for blog in BLOG_DIR.iterdir():
+        if blog.is_file():
+            try:
+                with open(blog, "r") as f:
+                    blog_md = f.read()
+
+                md_parser.reset()
+
+                post_html = md_parser.convert(blog_md)
+                post_title = md_parser.Meta.get("title")[0]
+                post_date = md_parser.Meta.get("date")[0]
+                post_description = md_parser.Meta.get("description")[0]
+                post_number = int(md_parser.Meta.get("number", [0])[0])
+
+                blog_file = f"{post_title.replace(' ', '-').lower()}.html"
+
+                OUTPUT_DIR.mkdir(exist_ok=True)
+                blog_content = {
+                    "content": post_html,
+                    "title": post_title,
+                    "date": post_date,
+                }
+                rendered_blog = template.render(blog_content)
+
+                with open(Path(OUTPUT_DIR, blog_file), "w") as f:
+                    f.write(rendered_blog)
+
+                post_metadata = {
+                    "title": post_title,
+                    "date": post_date,
+                    "description": post_description,
+                    "number": post_number,
+                    "file": blog_file,
+                }
+
+                blog_list.append(post_metadata)
+
+            except Exception:
+                continue
+
+    blog_list = sorted(blog_list, key=lambda x: x["number"], reverse=True)
+
+    return blog_list
+
+
+def render_index(experience_list, project_list, blog_list):
     """Renders index.html with project and experience information"""
     file_loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=file_loader)
 
     template = env.get_template("index_template.html")
-    context = {"experience_list": experience_list, "project_list": project_list}
+    context = {
+        "experience_list": experience_list,
+        "project_list": project_list,
+        "blog_list": blog_list,
+    }
 
     rendered_html = template.render(context)
 
     OUTPUT_PATH.touch()
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    with open(Path(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(rendered_html)
 
 
@@ -66,7 +127,10 @@ def main():
     """Runs the .html generator"""
     experience_list = parse_experience()
     project_list = parse_projects()
-    render_index(experience_list=experience_list, project_list=project_list)
+    blog_list = parse_blog_posts()
+    render_index(
+        experience_list=experience_list, project_list=project_list, blog_list=blog_list
+    )
 
 
 if __name__ == "__main__":
