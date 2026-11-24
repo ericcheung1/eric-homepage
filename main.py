@@ -7,7 +7,7 @@ import yaml
 PROJECTS_DIR = Path("projects")
 EXPERIENCE_DIR = Path("experience")
 TEMPLATE_DIR = Path("templates")
-OUTPUT_DIR = Path("output")
+OUTPUT_DIR = Path("docs")
 OUTPUT_PATH = Path("index.html")
 BLOG_DIR = Path("blog")
 
@@ -118,7 +118,6 @@ def render_index(experience_list, project_list, blog_list):
 
     rendered_html = template.render(context)
 
-    OUTPUT_PATH.touch()
     with open(Path(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(rendered_html)
 
