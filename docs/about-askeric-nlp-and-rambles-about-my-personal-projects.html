@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About askeric-nlp and rambles about my personal projects - Eric Cheung</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Guaranteed styling for injected Markdown tags -->
+  <style type="text/tailwindcss">
+    .blog-content p {
+      @apply mb-5 leading-7;
+    }
+    .blog-content h3 {
+      @apply text-xl font-extrabold mt-8 mb-3;
+    }
+    .blog-content h4 {
+      @apply text-lg font-extrabold mt-6 mb-2;
+    }
+    .blog-content ul {
+      @apply list-disc pl-5 mb-5 space-y-2;
+    }
+    .blog-content ol {
+      @apply list-decimal pl-5 mb-5 space-y-2;
+    }
+    .blog-content a {
+      @apply text-[#0000EE] underline;
+    }
+    .blog-content strong {
+      @apply font-extrabold;
+    }
+    .blog-content code {
+      @apply bg-[#EAEAE2] px-1.5 py-0.5 text-sm font-mono;
+    }
+    .blog-content pre {
+      @apply bg-[#EAEAE2] border border-[#999999] p-4 mb-5 overflow-x-auto;
+    }
+    .blog-content pre code {
+      @apply bg-transparent p-0;
+    }
+    .blog-content blockquote {
+      @apply border-l-2 border-[#888888] pl-4 italic text-gray-700 mb-5;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-[#F7F7F2] text-black font-sans text-base"
+  style="font-family: Arial, Verdana, sans-serif;"
+>
+  <div class="max-w-6xl mx-auto p-4 md:p-6">
+
+    <!-- Header -->
+    <header class="border-b-2 border-[#888888] pb-4 mb-6">
+      <h1 class="text-4xl font-extrabold tracking-tight">
+        <a href="index.html" class="hover:underline">Eric Cheung</a>
+      </h1>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6">
+
+      <!-- Sidebar -->
+      <aside class="border-b border-gray-300 pb-4 md:border-b-0
+                    md:border-r md:pr-4 md:pb-0">
+        <h2 class="text-lg font-extrabold mb-3">
+          Directory
+        </h2>
+
+        <nav class="flex flex-col items-start gap-3">
+          <a href="index.html#about" class="text-[#0000EE] underline">About</a>
+          <a href="index.html#experience" class="text-[#0000EE] underline">Experience</a>
+          <a href="index.html#projects" class="text-[#0000EE] underline">Projects</a>
+          <a href="index.html#interests" class="text-[#0000EE] underline">Interests</a>
+          <a href="index.html#contact" class="text-[#0000EE] underline">Contact Info</a>
+          <a href="index.html#blog" class="text-[#0000EE] underline">Blog</a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <main class="min-w-0">
+        <article>
+          <!-- Blog Title & Date Header -->
+          <div class="border-b border-[#999999] pb-2 mb-6">
+            <h2 class="text-2xl font-extrabold">
+              About askeric-nlp and rambles about my personal projects
+            </h2>
+            
+            <p class="mt-2 text-sm text-gray-600 leading-5">
+              10 Nov, 2026
+            </p>
+            
+          </div>
+
+          <!-- Injected Markdown Content -->
+          <div class="blog-content text-black">
+            <p>I wanted to talk about the lineage of this project <a href="https://github.com/ericcheung1/askeric-nlp">askeric-nlp</a> and how it sort of got here. The current state, as of the posting date, is a FastAPI web app serving a single page that takes in Reddit post URLs and does sentiment analysis and keyword extraction on 15 comments/replies. Separately, it also takes in standalone texts and does sentiment analysis on that as well. </p>
+<p>There is also an API route that accepts JSON and does sentiment analysis on the inputs but this feature isn’t as well thought out and isn’t as cleanly integrated so I don’t advertise it as much. This project has helped me learn tremendously, I’ve tried to optimize it using things like the FastAPI event loop, offloading things to threads, and using less resource intensive models. </p>
+<p>I would say I’ve done an okay job on its technical design and hope to improve it more in the future. Currently, it's hosted on a Digital Ocean droplet sitting behind Caddy as the reverse proxy, all containerized and running off Docker Compose. But these details can change so I will not touch upon them too much here.</p>
+<p>This project is definitely my most well thought out and most complete to date, but I didn’t just come with the premise of this project in one sitting, it has evolved alongside me and kind of changed every time I learned something new whether it was from a class, my other projects, or from work.</p>
+<p>I’ve only ever worked on one or two big personal projects because I like to go back and retry old stuff with new ideas. I first started working on personal projects around the Fall 2024 semester, roughly September to December, where I was starting the 3rd year of my economics undergrad. I had little exposure to coding at that point except for using R in my econometrics classes and random scripts/notebooks/general messing about with Python. </p>
+<p>That semester I took a class on statistical learning where I learned a bunch of classic machine learning algorithms from a statistical point of view and learned about data science concepts like bias-variance trade off and that sort of stuff. I was also actively looking for co-op opportunities as either a business analyst or data analyst. So I thought I would try my hand at using a ML model on a resume project. </p>
+<p>I made this small web scraping <a href="https://github.com/ericcheung1/Projects/blob/main/nba-salary-prediction/nba_stats_scraper.py">script</a> with beautiful soup for pulling NBA stats from <a href="https://www.basketball-reference.com/">basketball-reference.com</a> and I used my machine learning knowledge from class to build some <a href="https://github.com/ericcheung1/Projects/tree/main/nba-salary-prediction">models</a> in R to predict player salaries using box score stats. </p>
+<p>I eventually started to get some interviews for co-op and one was even for a data science position that I randomly applied to. Getting that interview made me believe I could actually work in a more technical and coding adjacent role even though thinking back I was clearly not ready for that job at the time. </p>
+<p>I ended up not getting that data science job and this was in the spring 2025 now, roughly March, I decided to do a bigger and grander project next. I came up with an <a href="https://github.com/ericcheung1/canucks-sentiment">idea</a> that analyzed comments on the r/canucks subreddit because I was and still am a big Canucks fan. Sidenote if you’re a Canucks fan, I did this after the season where we made the playoffs (╥﹏╥). </p>
+<p>The premise in the beginning was fairly simple: use the Python and a Reddit API library to scrape post-game threads for the 2024-25 season and then find a way to analyze sentiment for each comment. I researched some models that did sentiment analysis and ended up picking NLTK’s Vader model and Distilbert. These two models allowed me to compare a simpler rules-based model versus a transformer-based model. And working with Distilbert gave me exposure to the huggingface ecosystem. </p>
+<p>I decided to store the post data in MongoDB which was installed locally on my Windows PC. I did this because I had used SQLite to store the NBA salary data that I had scraped and now I wanted to learn about NoSQL. Looking back on it now I could have easily stored both the salary data and Reddit post data in CSVs or JSON but at least it was good to get exposed to those things. </p>
+<p>After finishing the analysis, I realized that the results weren’t very interesting to look at from a terminal or inside Jupyter notebooks. I wanted something that could be shown off like a website or a dashboard, so I decided on using Flask to build it. At this point I had no idea how a website worked, how things differed between a static page and a whole web application, or how others can get access to the website that I have on localhost. I didn’t even know that having data on MongoDB locally on my computer doesn’t actually make it available to the site in production. </p>
+<p>I ended up using MongoDB Atlas to host my data and I used Render to host the website. Doing those two things taught me a lot even if I didn’t fully understand everything at the time. I remember feeling very behind and wanted to do everything to sort of catch up in a way. It led to the canucks-sentiment project to be overcomplicated when it could have been more simple.</p>
+<p>Fast-forward to January of 2026, I was able to get a data science co-op. I didn’t even know what I was getting myself into but one of the first things I learned was Docker. I learned to package up models I found or made into flask applications and into Docker containers. Having ML models in a flask application allowed other people or things to access the model which was a really good hands-on look at the distributed nature of things at larger companies. I also learned a little about AWS and that whole ecosystem and more specifically Sagemaker.</p>
+<p>I wanted to apply this knowledge, more specifically packaging ML models in flask and cloud deployment. So I made an <a href="https://github.com/ericcheung1/WPaaS">NLP Inference API</a> which I deployed on a Digital Ocean droplet. Doing this allowed me to understand how to configure a server manually and get my application code deployed there automatically though CI/CD pipelines. I also got to understand how networking and DNS work on a basic level which is why my projects are hosted on silly little domain names. </p>
+<p>After working on the NLP inference API I got into a phase where I wanted to make apps. Which led me to work on an <a href="https://github.com/ericcheung1/askeric-nlp/blob/main/docs/README.md">initial version</a> of askeric-nlp which acted as a separate service that called my NLP inference API. It allowed me to practice a mini sort of distributed system. But it got cumbersome to have two things to maintain. I decided that I wanted one repo and one service which is how I ended up on the current setup.  </p>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-[#888888] mt-10 pt-4
+                   text-sm text-gray-800 text-center">
+      <p>© 2026 Eric Cheung</p>
+    </footer>
+
+  </div>
+</body>
+</html>
